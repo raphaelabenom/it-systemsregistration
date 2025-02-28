@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block header %}<h1 class="text-2xl font-bold text-center">Cadastramento</h1>{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:p-6">
+        <form method="POST" class="space-y-8 divide-y divide-gray-200">
+            <div class="space-y-8 divide-y divide-gray-200">
+                <div>
+                    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                        <div class="sm:col-span-4">
+                            <label for="nome" class="block text-sm font-medium text-gray-700">
+                                Nome
+                            </label>
+                            <div class="mt-1">
+                                <input type="text" name="nome" id="nome" required
+                                    class="shadow-sm focus:ring-jf-blue focus:border-jf-blue block w-full text-sm h-8 border-gray-300 rounded-md pl-2">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-6">
+                            <label for="descricao" class="block text-sm font-medium text-gray-700">
+                                Descrição
+                            </label>
+                            <div class="mt-1">
+                                <textarea id="descricao" name="descricao" rows="3"
+                                    class="shadow-sm focus:ring-jf-blue focus:border-jf-blue block w-full text-sm border border-gray-300 rounded-md pl-2 pt-2"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="pasta" class="block text-sm font-medium text-gray-700">
+                                Pasta
+                            </label>
+                            <div class="mt-1">
+                                <input type="text" name="pasta" id="pasta" required
+                                    class="shadow-sm focus:ring-jf-blue focus:border-jf-blue block w-full text-sm h-8 border-gray-300 rounded-md pl-2">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="node" class="block text-sm font-medium text-gray-700">
+                                Node
+                            </label>
+                            <div class="mt-1">
+                                <input type="text" name="node" id="node" required
+                                    class="shadow-sm focus:ring-jf-blue focus:border-jf-blue block w-full sm:text-sm h-8 border-gray-300 rounded-md pl-2">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="python" class="block text-sm font-medium text-gray-700">
+                                Python
+                            </label>
+                            <div class="mt-1">
+                                <input type="text" name="python" id="python" required
+                                    class="shadow-sm focus:ring-jf-blue focus:border-jf-blue block w-full sm:text-sm h-8 border-gray-300 rounded-md pl-2">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="endereco_web" class="block text-sm font-medium text-gray-700">
+                                Endereço Web
+                            </label>
+                            <div class="mt-1">
+                                <input type="text" name="endereco_web" id="endereco_web"
+                                    class="shadow-sm focus:ring-jf-blue focus:border-jf-blue block w-full sm:text-sm h-8 border-gray-300 rounded-md pl-2">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="porta_web" class="block text-sm font-medium text-gray-700">
+                                Porta Web
+                            </label>
+                            <div class="mt-1">
+                                <input type="text" name="porta_web" id="porta_web"
+                                    class="shadow-sm focus:ring-jf-blue focus:border-jf-blue block w-full sm:text-sm h-8 border-gray-300 rounded-md pl-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-5">
+                <div class="flex justify-end">
+                    <button type="submit"
+                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-jf-blue hover:bg-jf-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jf-blue">
+                        Criar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

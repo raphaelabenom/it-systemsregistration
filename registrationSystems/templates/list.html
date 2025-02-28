@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block header %}<h1 class="text-xl font-bold text-center"></h1>{% endblock %}
+
+{% block content %}
+<!-- Área para mensagens flash -->
+<div id="flash-message">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="bg-green-50 p-4 mb-4">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-green-800">
+                    {{ message }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Sistemas Cadastrados
+        </h3>
+        <a href="{{ url_for('create_sistema') }}"
+            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-jf-blue hover:bg-jf-blue-700">
+            Adicionar Sistema
+        </a>
+    </div>
+    <div class="border-t border-gray-200" id="sistemas-container">
+        {% include 'sistemas_lista_partial.html' %}
+    </div>
+</div>
+{% endblock %}

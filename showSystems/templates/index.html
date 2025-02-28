@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="h-full">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Online</title>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    @media (max-width: 640px) {
+      .responsive-table {
+        display: block;
+      }
+
+      .responsive-table thead {
+        display: none;
+      }
+
+      .responsive-table tbody,
+      .responsive-table tr,
+      .responsive-table td {
+        display: block;
+      }
+
+      .responsive-table tr {
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #e5e7eb;
+      }
+
+      .responsive-table td {
+        display: flex;
+        justify-content: space-between;
+        text-align: right;
+        padding: 0.5rem;
+      }
+
+      .responsive-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-align: left;
+        padding-right: 0.5rem;
+      }
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'jf-blue': '#003366',
+            'jf-gold': '#D4AF37',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen">
+  <header class="bg-jf-blue text-white shadow-lg">
+    <div class="container mx-auto px-4 py-4 sm:py-6">
+      <h1 class="text-2xl sm:text-3xl font-bold text-center sm:text-left">Sistemas</h1>
+    </div>
+  </header>
+
+  <main class="flex-grow container mx-auto px-4 py-6 sm:py-8">
+    <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+      <div class="p-4 sm:p-6 bg-gray-50 border-b border-gray-200">
+        <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">Sistemas Cadastrados</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full responsive-table">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome
+              </th>
+              <th class="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Descrição</th>
+              <th class="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Endereço Web</th>
+              <th class="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Porta
+              </th>
+              <th class="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            {% for sistema in sistemas %}
+            <tr class="hover:bg-gray-50 transition-colors duration-200">
+              <td class="px-4 sm:px-6 py-4" data-label="Nome">
+                <div class="text-sm font-medium text-gray-900">{{ sistema.nome }}</div>
+              </td>
+              <td class="px-4 sm:px-6 py-4" data-label="Descrição">
+                <div class="text-sm text-gray-500">{{ sistema.descricao }}</div>
+              </td>
+              <td class="px-4 sm:px-6 py-4" data-label="Endereço Web">
+                <div class="text-sm text-gray-500">{{ sistema.endereco_web }}</div>
+              </td>
+              <td class="px-4 sm:px-6 py-4" data-label="Porta">
+                <div class="text-sm text-gray-500">{{ sistema.porta_web }}</div>
+              </td>
+              <td class="px-4 sm:px-6 py-4 text-right sm:text-left" data-label="Ações">
+                <button onclick="window.open('{{ url_for('access_address', id=sistema.id) }}', '_blank');"
+                  class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-jf-blue hover:bg-jf-gold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
+                  <i data-feather="external-link" class="mr-2 h-4 w-4"></i>
+                  Acessar
+                </button>
+                <div id="message-{{ sistema.id }}"></div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-100 border-t border-gray-200 mt-auto">
+    <div class="container mx-auto px-4 py-4 sm:py-6">
+      <p class="text-center text-gray-600 text-sm">
+        &copy; 2025 System Manager. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    feather.replace();
+  </script>
+</body>
+
+</html>
